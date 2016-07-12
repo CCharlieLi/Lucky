@@ -1,1 +1,1 @@
-HTML5抽奖程序
+HTML5 Lottery with Love!
