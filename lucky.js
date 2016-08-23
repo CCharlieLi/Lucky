@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
 
-  var $ = require('./jquery')
-  require('./easing')
+  var $ = require('./modules/jquery')
+  require('./modules/easing')
 
   var CANVAS_HEIGHT = 500
   var CANVAS_WIDTH = 900
@@ -17,7 +17,7 @@ define(function(require, exports, module) {
   var ZOOM_DURATION = 500
   var HIT_SPEED = 100
 
-  var RIGIDITY = 4 // 弹性系数：2 -钢球 4 - 橡胶球，越大越软，建议小于 10
+  var RIGIDITY = 4
 
 
   function User(name, options) {
@@ -50,7 +50,6 @@ define(function(require, exports, module) {
     this.left = r(0, CANVAS_WIDTH - this.width)
     this.top = r(0, CANVAS_HEIGHT - this.height)
     this.zIndex = r(0, MAX_ZINDEX)
-
     this.reflow(callback)
   }
 
@@ -68,7 +67,6 @@ define(function(require, exports, module) {
         'left': this.left,
         'top': this.top
       }, r(DURATION_MIN, DURATION_MAX), 'easeOutBack', callback)
-
     }
   }
 
@@ -95,7 +93,6 @@ define(function(require, exports, module) {
 
   User.prototype.autoMove = function() {
     var that = this
-
     if (this.moving) {
       this.move(function() {
         that.autoMove()
@@ -153,7 +150,7 @@ define(function(require, exports, module) {
       this.data = data
 
       this.users = data.map(function(name) {
-        return new User(name);
+        return new User(name)
       })
 
       this._bindUI()
@@ -180,17 +177,10 @@ define(function(require, exports, module) {
         }
       }
 
-      // bind #lucky-balls
+      // bind #lucky-balls, remove item
       $('#lucky-balls').on('click', 'li', function(e) {
         var el = $(e.target)
-        var name = el.text()
-        var options = that.data[name]
-
-        if (options) {
-          that.addItem(name, options)
-          that.hit()
-          el.remove()
-        }
+        el.remove()
       })
 
       // bind #balls
@@ -322,7 +312,7 @@ define(function(require, exports, module) {
   }
 
   function getOffset(a, b) {
-    return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+    return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y))
   }
 
   function isOverlap(a, b) {

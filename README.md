@@ -1,1 +1,1 @@
-HTML5 Lottery with Love!
+# Lottery program for all (Inspaired by [imbugs/html5-luckydraw](https://github.com/imbugs/html5-luckydraw))
