@@ -1,37 +1,83 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Lucky Wiredcraft</title>
+<html><head>
+    <title>Wiredcraft Lottery</title>
     <meta charset="utf-8">
-    <link href="style.css" rel="stylesheet">
-  </head>
-  <body>
-    <nav>
-      <input id="num" type="text"></input>
-      <a onclick="setNum()">Set</a>
-    </nav>
-    <button id="go" data-text-start="Push SPACE key to start" data-text-stop="Push SPACE key to stop" data-action="start"></button>
-    <div id="container">
-      <ul id="balls">
-      </ul>
-      <ul id="lucky-balls">
-      </ul>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head><body>
+    <div class="cover">
+      <div class="cover-image"></div>
+      <div class="container">
+        <button id="go" data-text-start="Push SPACE key to start" data-text-stop="Push SPACE key to stop" data-action="start"></button>
+        <div id="container">
+          <ul id="balls">
+            <div class="row">
+              <br>
+              <br>
+              <div class="col-md-12 text-center">
+                <a href="https://wiredcraft.com/"><img class="center-block" src="https://wiredcraft.com/assets/logo.svg" width="700px"></a>
+                <br>
+                <p>Lottery for all people in Wiredcraft meetup! Find out who's the most standing out!</p>
+                <br>
+                <br>
+                <div class="col-md-offset-3 col-md-6 input-group">
+                  <input type="number" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control" id="amount" placeholder="Enter AMOUNT of people">
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger" onclick="setNum()">Go</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </ul>
+          <ul id="lucky-balls">
+          </ul>
+        </div>
+      </div>
     </div>
+
+
+    <footer class="section section-danger">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>Made by
+              <a href="https://github.com/CCharlieLi"> Charlie Li </a>with Pingendo and ❤️.</p>
+          </div>
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 hidden-xs text-right">
+                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <script src="./modules/sea.js"></script>
     <script>
-      
       function setNum() {
-        // Clear balls
-        document.getElementById('balls').innerHTML = "";
-        document.getElementById('lucky-balls').innerHTML = "";
-        // Set num for balls
-        var num = document.getElementById('num').value
+        var num = document.getElementById('amount').value
+        if (num == '') return
         var data = Array.apply(null, {length: num}).map(Number.call, Number)
+        // Clear
+        document.getElementById('balls').innerHTML = ""
+        document.getElementById('lucky-balls').innerHTML = ""
+        // Set num for balls
         seajs.use(['./lucky'], function(Lucky) {
+          Lucky.clear()
           Lucky.init(data)
         })
       }
     </script>
-  </body>
-</html>
+  
+
+</body></html>

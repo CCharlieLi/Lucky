@@ -1,6 +1,13 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
 body {
   font: 20px "Hiragino Sans GB", sans-serif;
   background: #eee;
+  height: 100%;
+  overflow: auto;
 }
 
 ul li {

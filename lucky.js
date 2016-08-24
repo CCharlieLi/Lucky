@@ -156,6 +156,12 @@ define(function(require, exports, module) {
       this._bindUI()
     },
 
+    clear: function() {
+      this.users.forEach(function(user) {
+        user = null
+      })
+    },
+
     _bindUI: function() {
       var that = this
 
@@ -190,8 +196,7 @@ define(function(require, exports, module) {
 
         for (var i = 0; i < that.users.length; i++) {
           var user = that.users[i]
-
-          if (user.name === name) {
+          if (user.name == name) {
             that.moveLucky()
             if (that.luckyUser !== user) {
               that.setLucky(user)
