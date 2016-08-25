@@ -1,5 +1,5 @@
 define(function(require) {
-  var jQuery = require('./jquery')
+  var jQuery = require('./jquery-1.8')
 /*
  * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
  *

@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 
-  var $ = require('./modules/jquery')
+  var $ = require('./modules/jquery-1.8')
   require('./modules/easing')
 
   var CANVAS_HEIGHT = 500
